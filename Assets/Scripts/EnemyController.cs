@@ -28,6 +28,10 @@ public class EnemyController : MonoBehaviour
             {
                 faceTarget();
             }
+        } else
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
         }
 
 
