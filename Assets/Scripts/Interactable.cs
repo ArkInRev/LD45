@@ -10,11 +10,12 @@ public class Interactable : MonoBehaviour
 
 
     bool isFocused = false;
-    Transform player;
+    protected Transform player;
 
     public virtual void interact()
     {
         Debug.Log("Interacting with " + transform.name);
+        
     }
 
     private void Update()

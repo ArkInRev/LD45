@@ -12,6 +12,8 @@ public class Sword : MonoBehaviour
     [SerializeField]
     float knockbackSeconds = 2;
     // Start is called before the first frame update
+    [SerializeField]
+    private float damageCaused = 5.0f;
 
     private IEnumerator coroutine;
 
@@ -56,28 +58,55 @@ public class Sword : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             //Debug.Log("Enemy was hit with the sword. ");
-            NavMeshAgent nma = other.GetComponent<NavMeshAgent>();
-
-
-            Vector3 dir = other.transform.position - transform.position;
-            dir = dir.normalized;
-            other.GetComponent<Rigidbody>().isKinematic = false;
-            nma.updatePosition = false;
-            nma.isStopped = true;
-            nma.ResetPath();
-            other.GetComponent<Rigidbody>().AddForce(dir * knockbackForce,ForceMode.Impulse);
-            
-            coroutine = RestoreControlToNavMeshAgent(other);
-            StartCoroutine(coroutine);
+            knockbackEnemy(other);
+        } else if (other.CompareTag("Object"))
+        {
+            knockbackPush(other);
         }
+        damageObject(damageCaused,other);
     }
 
     IEnumerator RestoreControlToNavMeshAgent(Collider enemy)
     {
         yield return new WaitForSeconds(knockbackSeconds);
-        enemy.GetComponent<NavMeshAgent>().SetDestination(enemy.transform.position);
-        enemy.GetComponent<Rigidbody>().isKinematic = true;
-        enemy.GetComponent<NavMeshAgent>().updatePosition = true;
+        if(enemy!=null)
+        {
+            enemy.GetComponent<NavMeshAgent>().SetDestination(enemy.transform.position);
+            enemy.GetComponent<Rigidbody>().isKinematic = true;
+            enemy.GetComponent<NavMeshAgent>().updatePosition = true;
+        }
+
+    }
+
+    private void knockbackEnemy(Collider enemy)
+    {
+        NavMeshAgent nma = enemy.GetComponent<NavMeshAgent>();
+        enemy.GetComponent<Rigidbody>().isKinematic = false;
+        nma.updatePosition = false;
+        nma.isStopped = true;
+        nma.ResetPath();
+        coroutine = RestoreControlToNavMeshAgent(enemy);
+
+        knockbackPush(enemy);
+        StartCoroutine(coroutine);
+
+    }
+
+    private void knockbackPush(Collider other)
+    {
+        Vector3 dir = other.transform.position - transform.position;
+        dir = dir.normalized;
+        other.GetComponent<Rigidbody>().AddForce(dir * knockbackForce, ForceMode.Impulse);
+    }
+
+    private void damageObject(float dmg, Collider other)
+    {
+        hp otherHP = other.GetComponent<hp>();
+
+        if (otherHP != null)
+        {
+            otherHP.takeDamage(dmg);
+        }
     }
 
 }
