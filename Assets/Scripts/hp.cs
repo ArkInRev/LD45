@@ -8,6 +8,11 @@ public class hp : MonoBehaviour
     private float maxHealth;
     [SerializeField]
     private float curHealth;
+    
+    [SerializeField]
+    private float chanceToDropSpirit = .75f;
+    [SerializeField]
+    GameObject spiritPrefab;
 
     public virtual void Awake()
     {
@@ -17,6 +22,11 @@ public class hp : MonoBehaviour
     private float getHealth()
     {
         return curHealth;
+    }
+
+    public float getHealthPercent()
+    {
+        return curHealth/maxHealth;
     }
 
     public void takeDamage(float dmg)
@@ -46,5 +56,19 @@ public class hp : MonoBehaviour
         Debug.Log("This object ran out of health: " + transform.name);
     }
 
+    protected bool spiritLoot()
+    {
+        bool loot = false;
+        float lootcheck = Random.value;
+        if (lootcheck <= chanceToDropSpirit) loot = true;
+
+
+        return loot;
+    }
+
+    protected GameObject GetSpiritPrefab()
+    {
+        return spiritPrefab;
+    }
 
 }

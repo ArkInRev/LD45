@@ -9,6 +9,12 @@ public class ClickToMove : MonoBehaviour
     private NavMeshAgent thisNavMeshAgent;
     private Transform target;
 
+    [SerializeField]
+    LayerMask clickLayers;
+
+    [SerializeField]
+    private float rotationSpeed = 20f;
+
     public Interactable focus;
 
     public Sword equipped;
@@ -29,7 +35,7 @@ public class ClickToMove : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out hit, 100,clickLayers))
             {
                 thisNavMeshAgent.destination = hit.point;
                 RemoveFocus();
@@ -37,7 +43,7 @@ public class ClickToMove : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out hit, 100, clickLayers))
             {
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
@@ -107,7 +113,7 @@ public class ClickToMove : MonoBehaviour
     {
         Vector3 dir = (target.position - transform.position).normalized;
         Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * rotationSpeed);
 
     }
 }

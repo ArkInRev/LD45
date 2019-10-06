@@ -123,3 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   curHealth: 0
+  chanceToDropSpirit: 0.25
+  spiritPrefab: {fileID: 2306491736281141692, guid: c8dcd7293a965434f8ae34667e097ae1,
+    type: 3}
+  destroyedVersion: {fileID: 3246734032017666986, guid: 76c05de46dde40a42882ef2cf7f6347d,
+    type: 3}

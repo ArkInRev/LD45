@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7967440339130155052}
   - component: {fileID: 7967440339130155048}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: SwordHeld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,4 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 35
   knockbackSeconds: 2
+  typicalDamage: 5
   damageCaused: 5
+  enemyHitPS: {fileID: 2668978821683678551, guid: 28754ad4b9a60c146b3eb7f95ea478ae,
+    type: 3}
+  objectHitPS: {fileID: 6116482639260930106, guid: 6f86664e6b4e55943b73d50d54cd27d7,
+    type: 3}

@@ -10,6 +10,12 @@ public class objectHealth : hp
     {
         Instantiate(destroyedVersion,transform.position,Quaternion.identity);
         Debug.Log("This INHERITED object ran out of health from hp component: " + transform.name);
+
+        if (spiritLoot())
+        {
+            Instantiate(GetSpiritPrefab(), transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 }

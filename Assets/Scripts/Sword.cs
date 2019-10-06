@@ -13,13 +13,21 @@ public class Sword : MonoBehaviour
     float knockbackSeconds = 2;
     // Start is called before the first frame update
     [SerializeField]
-    private float damageCaused = 5.0f;
+    private float typicalDamage = 5.0f;
+    [SerializeField]
+    private float damageCaused;
+
+    [SerializeField]
+    private ParticleSystem enemyHitPS;
+    [SerializeField]
+    private ParticleSystem objectHitPS;
 
     private IEnumerator coroutine;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        damageCaused = typicalDamage;
     }
 
     public void DoAttack()
@@ -29,18 +37,19 @@ public class Sword : MonoBehaviour
         {
             anim.SetBool("swing1", true);
         }
-        
-            
+
+        damageCaused = typicalDamage;
 
 
-//        clip = anim.GetNextAnimatorClipInfo(0);
-//        Debug.Log(clip[0].clip.name);
-//            if (clip[0].clip.name == "SwordSwing1")
-            if (anim.GetBool("swing1"))
+        //        clip = anim.GetNextAnimatorClipInfo(0);
+        //        Debug.Log(clip[0].clip.name);
+        //            if (clip[0].clip.name == "SwordSwing1")
+        if (anim.GetBool("swing1"))
             {
                 anim.SetBool("swing1", false);
             anim.SetBool("swing2", true);
             anim.SetBool("swing3", false);
+            //damageCaused = typicalDamage * 1.25f;
         }
 
         if (anim.GetBool("swing2"))
@@ -48,7 +57,8 @@ public class Sword : MonoBehaviour
                 anim.SetBool("swing1", false);
                 anim.SetBool("swing2", false);
                 anim.SetBool("swing3", true);
-            }
+           // damageCaused = typicalDamage * 3f ;
+        }
         anim.SetTrigger("NormalSwing");
     }
 
@@ -58,9 +68,11 @@ public class Sword : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             //Debug.Log("Enemy was hit with the sword. ");
+            Instantiate(enemyHitPS, other.ClosestPoint(transform.position), Quaternion.identity);
             knockbackEnemy(other);
         } else if (other.CompareTag("Object"))
         {
+            Instantiate(objectHitPS, other.ClosestPoint(transform.position), Quaternion.identity);
             knockbackPush(other);
         }
         damageObject(damageCaused,other);

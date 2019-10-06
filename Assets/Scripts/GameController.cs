@@ -16,11 +16,21 @@ public class GameController : Singleton<GameController>
     [SerializeField]
     private Canvas mainGameUI;
 
+    [SerializeField]
+    private int SpiritCount;
+    [SerializeField]
+    private TMP_Text SpiritCountText;
 
+   
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        SpiritCount = 0;
     }
 
     // Update is called once per frame
@@ -32,6 +42,7 @@ public class GameController : Singleton<GameController>
             
 
         }
+        SpiritCountText.text = SpiritCount.ToString();
 
 
     }
@@ -62,4 +73,16 @@ public class GameController : Singleton<GameController>
         public const int InProgressPaused = 3; // game is in progress and PAUSED
         public const int GameOver = 4; // game is showing Ending screen with restart option PAUSED
     }
+
+    public int GetSpirit()
+    {
+        return SpiritCount;
+    }
+
+    public void UpdateSpirit(int amount)
+    {
+        SpiritCount += amount;
+        if (SpiritCount <= 0) SpiritCount = 0;
+    }
+
 }

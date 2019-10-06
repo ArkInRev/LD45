@@ -1,16 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
     private float pickupRange = 3.0f;
     private bool interacted = false;
+    [SerializeField]
+    TMP_Text tmtext;
+    [SerializeField]
+    Color textColor;
 
+    
 
     bool isFocused = false;
     protected Transform player;
+
+    public virtual void Start()
+    {
+        if (tmtext != null)
+        {
+            tmtext.color = Color.clear;
+        }
+    }
 
     public virtual void interact()
     {
@@ -18,8 +32,9 @@ public class Interactable : MonoBehaviour
         
     }
 
-    private void Update()
+    public virtual void Update()
     {
+
         if (isFocused && !interacted)
         {
             float dist = Vector3.Distance(player.position, transform.position);
@@ -29,6 +44,8 @@ public class Interactable : MonoBehaviour
                 interacted = true;
             }
         }
+
+
     }
 
 
