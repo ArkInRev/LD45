@@ -182,7 +182,8 @@ MonoBehaviour:
   spiritPrefab: {fileID: 2306491736281141692, guid: c8dcd7293a965434f8ae34667e097ae1,
     type: 3}
   chanceToDropHeart: 0.75
-  heartPrefab: {fileID: 0}
+  heartPrefab: {fileID: 2306491736281141692, guid: b58cbb97ba0221447b1a8bac06e2ffd9,
+    type: 3}
   sound: {fileID: 9112888811060964850}
   takeHit: {fileID: 8300000, guid: a9773c746fe89774dbfc8238bb46e014, type: 3}
   destroyedVersion: {fileID: 5243332480722378361, guid: 46818a9389a10b64286766e587d4e837,
