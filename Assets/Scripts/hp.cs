@@ -14,6 +14,14 @@ public class hp : MonoBehaviour
     [SerializeField]
     GameObject spiritPrefab;
 
+    [SerializeField]
+    private float chanceToDropHeart = .75f;
+    [SerializeField]
+    GameObject heartPrefab;
+
+    public AudioSource sound;
+    public AudioClip takeHit;
+
     public virtual void Awake()
     {
         curHealth = maxHealth;
@@ -38,6 +46,7 @@ public class hp : MonoBehaviour
             objectDeath();
             
         }
+        sound.Play();
         Debug.Log("Damaged health down to: " + curHealth + " on " + transform.name);
     }
 
@@ -66,9 +75,23 @@ public class hp : MonoBehaviour
         return loot;
     }
 
+    protected bool heartLoot()
+    {
+        bool loot = false;
+        float lootcheck = Random.value;
+        if (lootcheck <= chanceToDropHeart) loot = true;
+
+
+        return loot;
+    }
+
     protected GameObject GetSpiritPrefab()
     {
         return spiritPrefab;
     }
 
+    protected GameObject GetHeartPrefab()
+    {
+        return heartPrefab;
+    }
 }

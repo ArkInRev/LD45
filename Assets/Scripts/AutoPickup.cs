@@ -8,6 +8,11 @@ public class AutoPickup : Interactable
     [SerializeField]
     protected ParticleSystem collectPS;
 
+    public AudioSource sound;
+    public AudioClip soundClip;
+
+    private IEnumerator coroutine;
+     
     public override void Start()
     {
         gc = GameController.instance;
@@ -26,11 +31,22 @@ public class AutoPickup : Interactable
         Debug.Log("Trigger Enter: " + other.name + " Tag: " + other.tag);
         if (other.CompareTag("Player"))
         {
-            
+
+            coroutine = playPickupSound();
+            StartCoroutine(coroutine);
+
+
             Instantiate(collectPS, transform.position, Quaternion.identity);
             gc.UpdateSpirit(1);
             Destroy(gameObject);
         }
+    }
+
+    public IEnumerator playPickupSound()
+    {
+        yield return new WaitForSeconds(0.1f);
+        sound.Play();
+        
     }
 
 

@@ -22,12 +22,19 @@ public class Sword : MonoBehaviour
     [SerializeField]
     private ParticleSystem objectHitPS;
 
+    private AudioSource sound;
+
+    public AudioClip swingClip;
+
+
+
     private IEnumerator coroutine;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         damageCaused = typicalDamage;
+        sound = GetComponent<AudioSource>();
     }
 
     public void DoAttack()
@@ -40,6 +47,7 @@ public class Sword : MonoBehaviour
 
         damageCaused = typicalDamage;
 
+        
 
         //        clip = anim.GetNextAnimatorClipInfo(0);
         //        Debug.Log(clip[0].clip.name);

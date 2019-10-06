@@ -54,11 +54,12 @@ public class GameController : Singleton<GameController>
         if (isPaused)
         {
             pauseMenu.GetComponent<Canvas>().enabled = true;
-            
+            Time.timeScale = 0;
 
         } else
         {
             pauseMenu.GetComponent<Canvas>().enabled = false;
+            Time.timeScale = 1;
 
         }
     }

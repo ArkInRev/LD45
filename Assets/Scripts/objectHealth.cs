@@ -15,7 +15,10 @@ public class objectHealth : hp
         {
             Instantiate(GetSpiritPrefab(), transform.position, Quaternion.identity);
         }
-
+        if (heartLoot())
+        {
+            Instantiate(GetHeartPrefab(), transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }
