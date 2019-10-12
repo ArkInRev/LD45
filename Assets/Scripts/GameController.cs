@@ -15,13 +15,24 @@ public class GameController : Singleton<GameController>
     private Canvas pauseMenu;
     [SerializeField]
     private Canvas mainGameUI;
-
+    [SerializeField]
+    private Canvas ExitUI;
     [SerializeField]
     private int SpiritCount;
     [SerializeField]
     private TMP_Text SpiritCountText;
 
-   
+    [SerializeField]
+    private TMP_Text skullCount;
+    [SerializeField]
+    private TMP_Text ExitTextField;
+
+    [SerializeField]
+    private string winTextString;
+    [SerializeField]
+    private string loseTextString;
+
+
 
     private void Awake()
     {
@@ -86,4 +97,34 @@ public class GameController : Singleton<GameController>
         if (SpiritCount <= 0) SpiritCount = 0;
     }
 
+    public void FoundExit()
+    {
+        skullCount.text = SpiritCount.ToString();
+        ExitTextField.text = winTextString;
+
+        titleScreen.enabled = false;
+        pauseMenu.enabled = false;
+        mainGameUI.enabled = false;
+
+
+        ExitUI.enabled = true;
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void PlayerDied()
+    {
+        skullCount.text = SpiritCount.ToString();
+        ExitTextField.text = loseTextString;
+
+        titleScreen.enabled = false;
+        pauseMenu.enabled = false;
+        mainGameUI.enabled = false;
+
+
+        ExitUI.enabled = true;
+    }
 }
