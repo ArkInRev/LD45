@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &1527805313751611712
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514516822080705450}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.52
+  m_Height: 1.5
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.5, z: 1}
+--- !u!135 &9016159025787181644
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514516822080705450}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: -0.3, z: 1}
 --- !u!1 &722348356532734387
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,8 +60,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722348356532734387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 1, z: 29.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 514516822080540554}
   m_Father: {fileID: 0}
@@ -73,6 +100,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -149,6 +177,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   awareness: 20
+  anim: {fileID: 514516822087966826}
+  meleeColliders: []
+  playerHitPS: {fileID: 2668978821683678551, guid: 28754ad4b9a60c146b3eb7f95ea478ae,
+    type: 3}
+  objectHitPS: {fileID: 6116482639260930106, guid: 6f86664e6b4e55943b73d50d54cd27d7,
+    type: 3}
+  typicalDamage: 20
+  damageCaused: 0
+  timeBetweenAttacks: 2
 --- !u!114 &722348356532734379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +218,7 @@ MonoBehaviour:
   chanceToDropSpirit: 0.75
   spiritPrefab: {fileID: 2306491736281141692, guid: c8dcd7293a965434f8ae34667e097ae1,
     type: 3}
-  chanceToDropHeart: 0.75
+  chanceToDropHeart: 0.1
   heartPrefab: {fileID: 2306491736281141692, guid: b58cbb97ba0221447b1a8bac06e2ffd9,
     type: 3}
   sound: {fileID: 9112888811060964850}
@@ -341,21 +378,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9b83e22e2bdd90a479c6e0e756a40ff1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9b83e22e2bdd90a479c6e0e756a40ff1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9b83e22e2bdd90a479c6e0e756a40ff1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.25
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 9b83e22e2bdd90a479c6e0e756a40ff1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e87065a807185b74db275eb4476b603e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b83e22e2bdd90a479c6e0e756a40ff1, type: 3}
+--- !u!1 &514516822080705450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 9b83e22e2bdd90a479c6e0e756a40ff1,
+    type: 3}
+  m_PrefabInstance: {fileID: 514516822080673034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &514516822080540554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 9b83e22e2bdd90a479c6e0e756a40ff1,
+    type: 3}
+  m_PrefabInstance: {fileID: 514516822080673034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &514516822087966826 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 9b83e22e2bdd90a479c6e0e756a40ff1,
     type: 3}
   m_PrefabInstance: {fileID: 514516822080673034}
   m_PrefabAsset: {fileID: 0}

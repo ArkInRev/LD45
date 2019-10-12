@@ -15,7 +15,7 @@ public class hp : MonoBehaviour
     GameObject spiritPrefab;
 
     [SerializeField]
-    private float chanceToDropHeart = .75f;
+    private float chanceToDropHeart = .1f;
     [SerializeField]
     GameObject heartPrefab;
 
