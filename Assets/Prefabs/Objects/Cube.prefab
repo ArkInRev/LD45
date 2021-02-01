@@ -70,6 +70,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -128,7 +129,7 @@ MonoBehaviour:
   chanceToDropSpirit: 0.25
   spiritPrefab: {fileID: 2306491736281141692, guid: c8dcd7293a965434f8ae34667e097ae1,
     type: 3}
-  chanceToDropHeart: 0.75
+  chanceToDropHeart: 0.05
   heartPrefab: {fileID: 2306491736281141692, guid: b58cbb97ba0221447b1a8bac06e2ffd9,
     type: 3}
   sound: {fileID: 5110325281052723655}

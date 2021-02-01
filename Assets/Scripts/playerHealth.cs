@@ -10,6 +10,8 @@ public class playerHealth : hp
         //Instantiate(destroyedVersion, transform.position, Quaternion.identity);
         //Debug.Log("This INHERITED object ran out of health from hp component: " + transform.name);
         //Destroy(gameObject);
+        GameController.instance.PlayerDied();
+
     }
 
     

@@ -38,5 +38,7 @@ public class PlayerManager : Singleton<PlayerManager>
         targetFill = player.GetComponent<hp>().getHealthPercent();
         //Debug.Log("health percent: " + targetFill);
         fluidFillImage.fillAmount = playerHP.getHealthPercent();
+    
+
     }
 }

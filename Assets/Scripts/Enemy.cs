@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : Interactable
 {
+
+
     public override void interact()
     {
         base.interact();
@@ -11,4 +13,7 @@ public class Enemy : Interactable
 
         // Maybe enemies are not an interactable? 
     }
+
+
+
 }
